@@ -1,10 +1,19 @@
 // const express = require('express') // CommonJS
 import express from 'express' // ES Modules
 import userRoutes from './routes/userRoutes.js'
+import db from './config/db.js'
 
 
 // Crear la app
 const app = express()
+
+// Conexion a la base de datos
+try {
+    await db.authenticate();
+    console.log('Conexion correcta a la base de datos')
+} catch (error) {
+    console.log(error)
+}
 
 // Habilitar Pug
 app.set('view engine', 'pug')
